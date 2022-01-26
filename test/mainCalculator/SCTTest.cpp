@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../include/SCT.h"
+#include "../../include/mainCalculator/SCT.h"
 
 using namespace std;
 
