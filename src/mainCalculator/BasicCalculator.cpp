@@ -225,7 +225,79 @@ float basic(const char* eq,char start,char end,const float* vars){
             if(!foundMatching)
                 return NAN;
         }else{   
-        //เพิ่มมันซะไอ้เจ           
+        if(i>2 && eq[i]=='n' && eq[i-1]=='i' && eq[i-2]=='s' && eq[i-3]=='a'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = asin(*numbers.at(numbers.size()-1));
+                i-=3;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
+            }else if(i>1 && eq[i]=='n' && eq[i-1]=='i' && eq[i-2]=='s'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = sin(*numbers.at(numbers.size()-1));
+                i-=2;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
+            }else if(i>2 && eq[i]=='s' && eq[i-1]=='o' && eq[i-2]=='c' && eq[i-3]=='a'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = acos(*numbers.at(numbers.size()-1));
+                i-=3;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
+            }else if(i>1 && eq[i]=='s' && eq[i-1]=='o' && eq[i-2]=='c'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = cos(*numbers.at(numbers.size()-1));
+                i-=2;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
+            }else if(i>2 && eq[i]=='n' && eq[i-1]=='a' && eq[i-2]=='t' && eq[i-3]=='a'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = atan(*numbers.at(numbers.size()-1));
+                i-=3;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
+            }else if(i>1 && eq[i]=='n' && eq[i-1]=='a' && eq[i-2]=='t'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = tan(*numbers.at(numbers.size()-1));
+                i-=2;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
+            }else if(i>0 && eq[i]=='n' && eq[i-1]=='l'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = log(*numbers.at(numbers.size()-1));
+                i-=3;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
+            }else if(i>1 && eq[i]=='g' && eq[i-1]=='o' && eq[i-2]=='l'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = log10(*numbers.at(numbers.size()-1));
+                i-=2;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
+            }
+
+            else if(i>0 && eq[i]=='i' && eq[i-1]=='p'){
+                numbers.push(M_PI);
+                i-=1;
+            }else if(eq[i]=='e'){
+                numbers.push(M_E);
+            }else if(i>1 && eq[i]=='s' && eq[i-1]=='n' && eq[i-2]=='a'){
+                if(vars)
+                    numbers.push(vars[0]);
+                else
+                    numbers.push(NAN);
+                i-=2;
+            }
+            else
+                return NAN;
+        }          
     }
 
     if(tmpc>0)
