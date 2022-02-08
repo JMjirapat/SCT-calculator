@@ -281,6 +281,13 @@ float basic(const char* eq,char start,char end,const float* vars){
                 if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                     plusIndex.pop();
                 }
+            }else if(i>1 && eq[i]=='s' && eq[i-1]=='b' && eq[i-2]=='a'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = abs(*numbers.at(numbers.size()-1));
+                i-=2;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
             }
 
             else if(i>0 && eq[i]=='i' && eq[i-1]=='p'){
