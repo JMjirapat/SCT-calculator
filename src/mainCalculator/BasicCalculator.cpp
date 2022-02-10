@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
+#include <math.h>
 #include <string>
 #include <cstdio>
 #include <cstdlib>
@@ -28,6 +28,7 @@ public:
 
 template <typename T>
 Vector<T>::Vector() : currentIndex(0){
+    //data = new T;
     data = (T *)malloc(DEFAULT_ARRAY_SIZE * sizeof(T));
     if (!data)
         length = 0;
@@ -36,7 +37,7 @@ Vector<T>::Vector() : currentIndex(0){
 }
 template <typename T>
 Vector<T>::~Vector(){
-    free(data);
+    delete data;
 }
 template <typename T>
 T *Vector<T>::at(int index){
@@ -90,9 +91,7 @@ char Vector<T>::pop(){
 }
 
 char* reverseString(const char* string,char length){
-    auto tmp = (char*)malloc((length+1)*sizeof(char));
-    if(!tmp)
-        return nullptr;
+    char* tmp = new char;
 
     tmp[length]='\0';
     for (int i = 0; i < length; ++i) {
@@ -101,18 +100,16 @@ char* reverseString(const char* string,char length){
     return tmp;
 }
 
-float basic(const char* eq,char start,char end,const float* vars){
+double basic(const char* eq,char start,char end, bool deg,const double* vars){
     if(end<=start)
         return NAN;
 
-    Vector<float> numbers;
+    Vector<double> numbers;
     Vector<char> plusIndex;
     Vector<char> multIndex;
     Vector<char> powIndex;
 
-    auto tmp = (char*)malloc(MAX_NUMBER_LENGTH*sizeof(char));
-    if(!tmp)
-        return NAN;
+    char* tmp = new char;
     char tmpc=0;
     char* reversed;
 
@@ -128,7 +125,7 @@ float basic(const char* eq,char start,char end,const float* vars){
                 if(!reversed)
                     return NAN;
                 plusIndex.push(numbers.push(strtod(reversed,nullptr)));
-                free(reversed);
+                delete reversed;
                 tmpc=0;
             }else if(i==end-1){
                 return NAN;
@@ -141,7 +138,7 @@ float basic(const char* eq,char start,char end,const float* vars){
                 if(!reversed)
                     return NAN;
                 plusIndex.push(numbers.push(-strtod(reversed,nullptr)));
-                free(reversed);
+                delete reversed;
                 tmpc=0;
             }else if(i==end-1){
                 return NAN;
@@ -157,7 +154,7 @@ float basic(const char* eq,char start,char end,const float* vars){
                 if(!reversed)
                     return NAN;
                 multIndex.push(numbers.push(strtod(reversed,nullptr)));
-                free(reversed);
+                delete reversed;
                 tmpc=0;
             }else if(i==end-1 || i==start){
                 return NAN;
@@ -172,8 +169,8 @@ float basic(const char* eq,char start,char end,const float* vars){
                 reversed=reverseString(tmp,tmpc);
                 if(!reversed)
                     return NAN;
-                multIndex.push(numbers.push((float)1/strtod(reversed,nullptr)));
-                free(reversed);
+                multIndex.push(numbers.push(1.0/strtod(reversed,nullptr)));
+                delete reversed;
                 tmpc=0;
             }else if(i==end-1 || i==start){
                 return NAN;
@@ -192,7 +189,7 @@ float basic(const char* eq,char start,char end,const float* vars){
                     return NAN;
                 multIndex.push(numbers.push(strtod(reversed,nullptr)));
                 powIndex.push(numbers.size());
-                free(reversed);
+                delete reversed;
                 tmpc=0;
             }else if(i==end-1 || i==start){
                 return NAN;
@@ -216,7 +213,7 @@ float basic(const char* eq,char start,char end,const float* vars){
                     --numClosingBrackets;
                 else if(eq[j]=='(' && numClosingBrackets==0){
                     if(!foundMatching) {
-                        numbers.push(basic(eq, j + 1, i,vars));
+                        numbers.push(basic(eq, j + 1, i, deg,vars));
                         i = j;
                         foundMatching = 1;
                     }
@@ -227,42 +224,72 @@ float basic(const char* eq,char start,char end,const float* vars){
         }else{   
         if(i>2 && eq[i]=='n' && eq[i-1]=='i' && eq[i-2]=='s' && eq[i-3]=='a'){
                 if(numbers.size())
-                    *numbers.at(numbers.size()-1) = asin(*numbers.at(numbers.size()-1));
+                {
+                    if(deg)
+                        *numbers.at(numbers.size()-1) = asin(*numbers.at(numbers.size()-1))*180/M_PI;
+                    else
+                        *numbers.at(numbers.size()-1) = asin(*numbers.at(numbers.size()-1));
+                }
+                    //*numbers.at(numbers.size()-1) = asin(*numbers.at(numbers.size()-1));
                 i-=3;
                 if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                     plusIndex.pop();
                 }
-            }else if(i>1 && eq[i]=='n' && eq[i-1]=='i' && eq[i-2]=='s'){
-                if(numbers.size())
-                    *numbers.at(numbers.size()-1) = sin(*numbers.at(numbers.size()-1));
+            }else if(i>1 && eq[i]=='n' && eq[i-1]=='i' && eq[i-2]=='s'){//3.14159
+                if(numbers.size()){
+                    if(deg)
+                        *numbers.at(numbers.size()-1) = sin(*numbers.at(numbers.size()-1)*M_PI/180);
+                    else
+                        *numbers.at(numbers.size()-1) = sin(*numbers.at(numbers.size()-1));
+                } 
                 i-=2;
                 if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                     plusIndex.pop();
                 }
             }else if(i>2 && eq[i]=='s' && eq[i-1]=='o' && eq[i-2]=='c' && eq[i-3]=='a'){
-                if(numbers.size())
-                    *numbers.at(numbers.size()-1) = acos(*numbers.at(numbers.size()-1));
+                if(numbers.size()){
+                    if(deg)
+                        *numbers.at(numbers.size()-1) = acos(*numbers.at(numbers.size()-1))*180/M_PI;
+                    else
+                        *numbers.at(numbers.size()-1) = acos(*numbers.at(numbers.size()-1));
+                }
+                    //*numbers.at(numbers.size()-1) = acos(*numbers.at(numbers.size()-1));
                 i-=3;
                 if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                     plusIndex.pop();
                 }
             }else if(i>1 && eq[i]=='s' && eq[i-1]=='o' && eq[i-2]=='c'){
-                if(numbers.size())
-                    *numbers.at(numbers.size()-1) = cos(*numbers.at(numbers.size()-1));
+                if(numbers.size()){
+                    if(deg)
+                        *numbers.at(numbers.size()-1) = cos(*numbers.at(numbers.size()-1)*M_PI/180);
+                    else
+                        *numbers.at(numbers.size()-1) = cos(*numbers.at(numbers.size()-1));
+                }
+                    //*numbers.at(numbers.size()-1) = cos(*numbers.at(numbers.size()-1));
                 i-=2;
                 if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                     plusIndex.pop();
                 }
             }else if(i>2 && eq[i]=='n' && eq[i-1]=='a' && eq[i-2]=='t' && eq[i-3]=='a'){
-                if(numbers.size())
-                    *numbers.at(numbers.size()-1) = atan(*numbers.at(numbers.size()-1));
+                if(numbers.size()){
+                    if(deg)
+                        *numbers.at(numbers.size()-1) = atan(*numbers.at(numbers.size()-1))*180/M_PI;
+                    else
+                        *numbers.at(numbers.size()-1) = atan(*numbers.at(numbers.size()-1));
+                }
+                    //*numbers.at(numbers.size()-1) = atan(*numbers.at(numbers.size()-1));
                 i-=3;
                 if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                     plusIndex.pop();
                 }
             }else if(i>1 && eq[i]=='n' && eq[i-1]=='a' && eq[i-2]=='t'){
-                if(numbers.size())
-                    *numbers.at(numbers.size()-1) = tan(*numbers.at(numbers.size()-1));
+                if(numbers.size()){
+                    if(deg)
+                        *numbers.at(numbers.size()-1) = tan(*numbers.at(numbers.size()-1)*M_PI/180);
+                    else
+                        *numbers.at(numbers.size()-1) = tan(*numbers.at(numbers.size()-1));
+                }
+                    //*numbers.at(numbers.size()-1) = tan(*numbers.at(numbers.size()-1));
                 i-=2;
                 if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                     plusIndex.pop();
@@ -313,7 +340,7 @@ float basic(const char* eq,char start,char end,const float* vars){
         if(!reversed)
             return NAN;
         numbers.push(strtod(reversed,nullptr));
-        free(reversed);
+        delete reversed;
         tmpc=0;
     }
 
@@ -340,13 +367,13 @@ float basic(const char* eq,char start,char end,const float* vars){
         }
     }
 
-    float result=*numbers.at(0);
+    double result=*numbers.at(0);
     if(numbers.size()>1) {
         for (char i = 0; i < plusIndex.size(); ++i) {
             result += *numbers.at(*plusIndex.at(i));
         }
     }
-    free(tmp);
+    delete tmp;
 
     return result;
 }
