@@ -27,7 +27,18 @@ int main()
             cout << "extra : move to extra calculator" << endl;
             cout << "deg : change unit of angle to degree." << endl;
             cout << "rad : change unit of angle to radian." << endl;
-            cout << "abs(_) : brah brah" << endl;
+            cout << "abs(_) : absolute value" << endl;
+            cout << "ln(_) : the natural logarithm of a number is its logarithm to the mathematical constant e" << endl;
+            cout << "log(_) : the logarithm base 10 is called the decimal or common logarithm" << endl;
+            cout << "e : is a mathematical constant approximately equal to 2.71828" << endl;
+            cout << "pi : is a mathematical constant approximately equal to 3.14159" << endl;
+            cout << "sin(_) : to find sin value of that number" << endl;
+            cout << "cos(_) : to find cos value of that number" << endl;
+            cout << "tan(_) : to find tan value of that number" << endl;
+            cout << "asin(_) : to find asin value of that number" << endl;
+            cout << "acos(_) : to find acos value of that number" << endl;
+            cout << "atan(_) : to find atan value of that number" << endl;
+            cout << "ans : show answer" << endl;
         }else if(input == "deg"){
             deg = true;
             cout << "change unit of angle to degree." << endl;
