@@ -201,7 +201,7 @@ double basic(const char* eq,char start,char end, bool deg,const double* vars){
                 multIndex.push(numbers.size());
                 powIndex.push(numbers.size());
             }
-
+        
         }
         else if(eq[i]==')'){
             char numClosingBrackets=0;
@@ -315,6 +315,13 @@ double basic(const char* eq,char start,char end, bool deg,const double* vars){
                 if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                     plusIndex.pop();
                 }
+            }else if(i>1 && eq[i]=='c' && eq[i-1]=='a' && eq[i-2]=='f'){
+                if(numbers.size())
+                    *numbers.at(numbers.size()-1) = tgamma(*numbers.at(numbers.size()-1)+1);
+                i-=2;
+                if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+                    plusIndex.pop();
+                }
             }
 
             else if(i>0 && eq[i]=='i' && eq[i-1]=='p'){
@@ -322,6 +329,7 @@ double basic(const char* eq,char start,char end, bool deg,const double* vars){
                 i-=1;
             }else if(eq[i]=='e'){
                 numbers.push(M_E);
+
             }else if(i>1 && eq[i]=='s' && eq[i-1]=='n' && eq[i-2]=='a'){
                 if(vars)
                     numbers.push(vars[0]);

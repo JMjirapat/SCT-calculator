@@ -38,6 +38,7 @@ int main()
             cout << "asin(_) : to find asin value of that number" << endl;
             cout << "acos(_) : to find acos value of that number" << endl;
             cout << "atan(_) : to find atan value of that number" << endl;
+            cout << "fac(_) : to find factorial value of that number" << endl;
             cout << "ans : show answer" << endl;
         }else if(input == "deg"){
             deg = true;
