@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include <string>
 #include <cstdio>
@@ -214,13 +215,13 @@ double basic(const char* eq,char start,char end, bool deg,const double* vars){
                 tmpc=0;
             }else if(i==end-1 || i==start){
                 return NAN;
-            }else if(plusIndex.size()>0 && plusIndex.at(plusIndex.size()-1) == numbers.size()) {
+            }else if(plusIndex.size()>0 && *plusIndex.at(plusIndex.size()-1) == numbers.size()) {
                 plusIndex.pop();
-                (numbers.at(numbers.size() - 1)) = 1 / (numbers.at(numbers.size() - 1));
+                (*numbers.at(numbers.size() - 1)) = 1 / (*numbers.at(numbers.size() - 1));
                 multIndex.push(numbers.size());
                 powIndex.push(numbers.size());
             }else{
-                (numbers.at(numbers.size() - 1)) = 1 / (*numbers.at(numbers.size() - 1));
+                (*numbers.at(numbers.size() - 1)) = 1 / (*numbers.at(numbers.size() - 1));
                 multIndex.push(numbers.size());
                 powIndex.push(numbers.size());
             }
