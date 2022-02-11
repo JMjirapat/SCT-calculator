@@ -61,15 +61,26 @@ void mul(){
     }
     cout << num << " = (" << x2 << " " << y2 << " " << z2 << ")"; ;
 }
-/*
-double dot(){
 
+void dot(){
+    double x1,y1,z1;
+    double x2,y2,z2;
+    double result;
+    cout << "input (x1 y1 z1): ";
+    cin >> x1 >> y1 >> z1;
+    cout << "input (x2 y2 z2): ";
+    cin >> x2 >> y2 >> z2;
+    result = (x1*x2)+(y1*y2)+(z1*z2);
+    cout << "(" << x1 << " " << y1 << " " << z1 << ")";
+    cout << ".";
+    cout << "(" << x2 << " " << y2 << " " << z2 << ")";
+    cout << " = ";
+    cout << result;
 }
 
-double cross(){
+/*double cross(){
 
 }
-
 double mag(){
 
 }
@@ -92,6 +103,6 @@ double sproj(){
 */
 
 int main(){
-    mul();
+    dot();
     return 0;
 }
