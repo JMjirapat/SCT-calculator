@@ -1,14 +1,16 @@
 #include "../../src/extraCalculator/Vector.cpp"
 
+double get_degrees();
+
 void sub();
 
 void mul();
 
-void dot();
+double dot();
 
 void cross();
 
-void mag();
+double mag();
 
 void ang();
 
