@@ -2,20 +2,20 @@
 
 double get_degrees();
 
-void sub();
+double sub();
 
-void mul();
+double mul();
 
 double dot();
 
-void cross();
+double cross();
 
 double mag();
 
-void ang();
+double ang();
 
-void unit();
+double unit();
 
-void proj();
+double proj();
 
-void sproj();
+double sproj();
