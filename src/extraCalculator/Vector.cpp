@@ -102,7 +102,6 @@ double mag(double a, double b, double c){
     cout << "| "<< a << " " << b << " " << c << " | = " << result;
     return result;
 }
-/*
 void ang(){
     double result1;
     double result2;
@@ -114,15 +113,12 @@ void ang(){
     cin >> x1 >> y1 >> z1;
     cout << "input (x2 y2 z2): \n";
     cin >> x2 >> y2 >> z2;
-    result1 = dot(x1,y1,z1,x2,y2,z2);
-    cout << endl;
-    result2 = mag(x1,y1,z1);
-    cout << endl;
-    result3 = mag(x2,y2,z2);
-    cout << endl;
+    result1 = (x1*x2)+(y1*y2)+(z1*z2);
+    result2 = sqrt(pow(x1,2)+pow(y1,2)+pow(z1,2));
+    result3 = sqrt(pow(x2,2)+pow(y2,2)+pow(z2,2));
     result4 = acos((result1)/(result2*result3));
-    cout << result4/(M_PI / 180);
-}*/
+    cout << result4/(M_PI / 180) << " degrees";
+}
 
 void unit(){
     double x1,y1,z1;
@@ -134,16 +130,16 @@ void unit(){
     cout << "( " << x1 << "/" << result << " " << y1 << "/" << result << " " << z1 << "/" << result << " )" ;
 }
 
-void proj(){
-
+double proj(double x1,double y1,double z1,double x2,double y2,double z2){
+    double result1, result2, result3;
+    result1 = ((x1*x2)+(y1*y2)+(z1*z2))/(pow(sqrt(pow(x2,2)+pow(y2,2)+pow(z2,2)),2))*x2;
+    result2 = ((x1*x2)+(y1*y2)+(z1*z2))/(pow(sqrt(pow(x2,2)+pow(y2,2)+pow(z2,2)),2))*y2;
+    result3 = ((x1*x2)+(y1*y2)+(z1*z2))/(pow(sqrt(pow(x2,2)+pow(y2,2)+pow(z2,2)),2))*z2;
+    cout << "(" << result1 << " " << result2 << " " << result3 << ")";
+    return 0;
 }
-
-/*void sproj(){
-
-}
-*/
 
 int main(){
-    ang();
+    unit();
     return 0;
 }
