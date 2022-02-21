@@ -83,7 +83,7 @@ void LE(){ // main running part
    cout << "g(x)+h(y)+i(z)= [3]    \n";
    cout << "Enter the amount of the variable: ";
    cin >> n;
-   while(n > 10 or n < 2){
+   while(n > 10 || n < 2){
        cout << "Please input [n] in scope of range! >:(\n";
        cout << "Enter the amount of the variable: ";
        cin >> n;

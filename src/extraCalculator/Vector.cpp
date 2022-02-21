@@ -1,16 +1,18 @@
 #include<iostream>
+#define _USE_MATH_DEFINES
 #include<math.h>
-#include<cmath>
+#include<fstream>
+#include <cmath>
+
 using namespace std;
 
-
-double sub(){
+void sub(){
     double x1,y1,z1;
     double x2,y2,z2;
     double x3,y3,z3;
     char x;
     while(x != '+' && x != '-'){
-    cout << "input + or -" << endl;
+    cout << "input + or -" << endl << " >> ";
     cin >> x;
     }
     cout << "input (x1 y1 z1): ";
@@ -31,17 +33,17 @@ double sub(){
     }
     cout << "(" << x2 << " " << y2 << " " << z2 << ")";
     cout << " = ";
-    cout << "(" << x3 << " " << y3 << " " << z3 << ")";
-    return x3,y3,z3;
+    cout << "(" << x3 << " " << y3 << " " << z3 << ")" << endl;
+    //return x3,y3,z3;
 }
 
-double mul(){
+void mul(){
     double num;
     double x1,y1,z1;
     double x2,y2,z2;
     char x;
     while(x != '*' && x != '/'){
-    cout << "input * or /" << endl;
+    cout << "input * or /" << endl << " >> ";
     cin >> x;
     }
     cout << "input num: ";
@@ -60,11 +62,11 @@ double mul(){
         y2 = y1/num;
         z2 = z1/num;
     }
-    cout << num << " = (" << x2 << " " << y2 << " " << z2 << ")"; ;
-    return x2,y2,z2;
+    cout << num << " = (" << x2 << " " << y2 << " " << z2 << ")" << endl;
+    //return x2,y2,z2;
 }
 
-double dot(){
+void dot(){
     double x1,y1,z1,x2,y2,z2;
     double result;
     cout << "input (x1 y1 z1): ";
@@ -76,11 +78,11 @@ double dot(){
     cout << ".";
     cout << "(" << x2 << " " << y2 << " " << z2 << ")";
     cout << " = ";
-    cout << result;
-    return result;
+    cout << result << endl;
+    //return result;
 }
 
-double cross(){
+void cross(){
     double a,b,c;
     double d,e,f;
     double result1;
@@ -98,21 +100,21 @@ double cross(){
     result3 = ((a*e)-(b*d));
     cout << "| i j k |\n";
     cout << "| " << a << " " << b << " " << c << " | =   (" << result1 << ")i+(" << result2 << ")j+(" << result3 << ")k\n";
-    cout << "| " << d << " " << e << " " << f << " |";
-    return result1, result2, result3;
+    cout << "| " << d << " " << e << " " << f << " |" << endl;
+    //return result1, result2, result3;
 }
 
-double mag(){
+void mag(){
     double x,y,z;
     double result;
     cout << "input | x y z |: \n";
     cin >> x >> y >> z;
     result = sqrt(pow(x,2)+pow(y,2)+pow(z,2));
-    cout << "| "<< x << " " << y << " " << z << " | = " << result;
-    return result;
+    cout << "| "<< x << " " << y << " " << z << " | = " << result << endl;
+    //return result;
 }
 
-double ang(){
+void ang(){
     double result1;
     double result2;
     double result3;
@@ -129,12 +131,12 @@ double ang(){
     result3 = sqrt(pow(x2,2)+pow(y2,2)+pow(z2,2));
     result4 = acos((result1)/(result2*result3));
     result5 = result4/(M_PI / 180);
-    cout << result5 << " degrees";
-    return result5;
+    cout << result5 << " degrees" << endl;
+    //return result5;
 
 }
 
-double unit(){
+void unit(){
     double x1,y1,z1;
     double x2,y2,z2;
     double result;
@@ -142,14 +144,14 @@ double unit(){
     cin >> x1 >> y1 >> z1;
     result = sqrt(pow(x1,2)+pow(y1,2)+pow(z1,2));
     cout << endl;
-    cout << "( " << x1 << "/" << result << " " << y1 << "/" << result << " " << z1 << "/" << result << " )";
+    cout << "( " << x1 << "/" << result << " " << y1 << "/" << result << " " << z1 << "/" << result << " )" << endl;
     x2 =  x1/result;
     y2 =  y1/result;
     z2 =  z1/result;
-    double x2,y2,z2;
+    //return x2,y2,z2;
 }
 
-double proj(){
+void proj(){
     double x1,y1,z1,x2,y2,z2;
     double result1, result2, result3;
     cout << "input v=(x1 y1 z1): ";
@@ -160,10 +162,45 @@ double proj(){
     result1 = ((x1*x2)+(y1*y2)+(z1*z2))/(pow(sqrt(pow(x2,2)+pow(y2,2)+pow(z2,2)),2))*x2;
     result2 = ((x1*x2)+(y1*y2)+(z1*z2))/(pow(sqrt(pow(x2,2)+pow(y2,2)+pow(z2,2)),2))*y2;
     result3 = ((x1*x2)+(y1*y2)+(z1*z2))/(pow(sqrt(pow(x2,2)+pow(y2,2)+pow(z2,2)),2))*z2;
-    cout << "(" << result1 << " " << result2 << " " << result3 << ")";
-    return result1, result2, result3;
+    cout << "(" << result1 << " " << result2 << " " << result3 << ")" << endl;
+    //return result1, result2, result3;
 }
 
-int main(){
-    return 0;
+void mainVector(){
+    while (true)
+        {
+            cout << "---------------------------------------------------------------------------" << endl;
+            cout << "                                    VECTOR                                 " << endl;
+            cout << "---------------------------------------------------------------------------" << endl;
+            ifstream srcVec("utils/vector.txt");
+            string textline2;
+            while(getline(srcVec,textline2))
+            {
+                cout << textline2 << endl;
+            }
+            srcVec.close();
+            string x;
+            cout << "Input >> ";
+            cin >> x;
+            if (x == "1")
+                sub();
+            else if (x == "2")
+                mul();
+            else if (x == "3")
+                dot();
+            else if (x == "4")
+                cross();
+            else if (x == "5")
+                mag();
+            else if (x == "6")
+                ang();
+            else if (x == "7")
+                unit();
+            else if (x == "8")
+                proj();
+            else if (x == "9")
+                break;
+            else
+                cout << "Invalid input!!" << endl;
+        }
 }

@@ -1,0 +1,9 @@
+1. Add, Subtract
+2. Scalar Multiplication
+3. Dot Product
+4. Cross Product
+5. Magnitude
+6. Angle
+7. Unit
+8. Projection
+9. back to extra calculator

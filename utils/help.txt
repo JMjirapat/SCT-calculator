@@ -1,0 +1,17 @@
+Command : detail
+extra   : move to extra calculator
+deg     : change unit of angle to degree.
+rad     : change unit of angle to radian.
+abs(_)  : absolute value
+ln(_)   : the natural logarithm of a number is its logarithm to the mathematical constant e
+log(_)  : the logarithm base 10 is called the decimal or common logarithm
+e       : is a mathematical constant approximately equal to 2.71828
+pi      : is a mathematical constant approximately equal to 3.14159
+sin(_)  : to find sin value of that number
+cos(_)  : to find cos value of that number
+tan(_)  : to find tan value of that number
+asin(_) : to find asin value of that number
+acos(_) : to find acos value of that number
+atan(_) : to find atan value of that number
+fac(_)  : to find factorial value of that number
+ans     : show answer
