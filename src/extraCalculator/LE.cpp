@@ -99,3 +99,15 @@ void LE(){ // main running part
    for(i = 0; i < n; i++) cin >> val[i];
    solve(coeff,val,ans,n);
 }
+
+void mainLE(){
+   bool next = 1;
+   while(next){
+      cout << "---------------------------------------------------------------------------" << endl;
+      cout << "                                 LINEAR EQUATION                           " << endl;
+      cout << "---------------------------------------------------------------------------" << endl;
+      LE();
+      cout << "Do you want calculate more? 0: No, 1: Yes" << endl << ">> ";
+      cin >> next;
+   }
+}

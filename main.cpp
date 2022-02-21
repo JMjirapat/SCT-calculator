@@ -2,6 +2,8 @@
 #include <fstream>
 #include "src/mainCalculator/BasicCalculator.cpp"
 #include "src/extraCalculator/Vector.cpp"
+#include "src/extraCalculator/LE.cpp"
+#include "src/extraCalculator/complex.cpp"
 
 using namespace std;
 
@@ -75,8 +77,10 @@ void extraCal(bool &mainMode)
         mainVector();
         break;
     case '3':
+        mainLE();
         break;
     case '4':
+        mainComplex();
         break;
     case '5':
         mainMode = true;
