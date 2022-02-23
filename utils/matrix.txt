@@ -1,0 +1,5 @@
+1. Add
+2. Subtract
+3. Multiply
+4. Determinant
+5. back to extra calculator

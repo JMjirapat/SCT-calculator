@@ -4,6 +4,7 @@
 #include "src/extraCalculator/Vector.cpp"
 #include "src/extraCalculator/LE.cpp"
 #include "src/extraCalculator/complex.cpp"
+#include "src/extraCalculator/Matrix.cpp"
 
 using namespace std;
 
@@ -72,6 +73,7 @@ void extraCal(bool &mainMode)
     switch (mode)
     {
     case '1':
+        mainMatrix();
         break;
     case '2':
         mainVector();
