@@ -7,7 +7,7 @@ void addMat(){
     int row, col;
     double mat1[10][10], mat2[10][10], sum[10][10];
     // set size matrix
-    cout << "Enter Row and Column Size of Matrix: ";
+    cout << "Enter Row and Column Size of Matrix (1-10): ";
     cin >> row >> col;
 
     while(row > 10 || row < 1 || col > 10 || col < 1){
@@ -70,7 +70,7 @@ void subtractMat(){
     int row, col;
     double mat1[10][10], mat2[10][10], sum[10][10];
     // set size matrix
-    cout << "Enter Row and Column Size of Matrix: ";
+    cout << "Enter Row and Column Size of Matrix (1-10): ";
     cin >> row >> col;
 
     while(row > 10 || row < 1 || col > 10 || col < 1){
@@ -133,19 +133,19 @@ void multiplyMat(){
     int row1, col1, row2, col2;
     double mat1[10][10], mat2[10][10], mult[10][10];
     // set size matrix
-    cout << "Enter Row and Column Size of First Matrix: ";
+    cout << "Enter Row and Column Size of First Matrix (1-10): ";
     cin >> row1 >> col1;
 
-    cout << "Enter Row and Column Size of Second Matrix: ";
+    cout << "Enter Row and Column Size of Second Matrix (1-10): ";
     cin >> row2 >> col2;
 
     while(col1 != row2){
         cout << "Error! column of first matrix not equal to row of second.\n";
 
-        cout << "Enter Row and Column Size of First Matrix: ";
+        cout << "Enter Row and Column Size of First Matrix (1-10): ";
         cin >> row1 >> col1;
 
-        cout << "Enter Row and Column Size of Second Matrix: ";
+        cout << "Enter Row and Column Size of Second Matrix (1-10): ";
         cin >> row2 >> col2;
     }
     // input
@@ -171,13 +171,13 @@ void multiplyMat(){
         }
     }
 
-     for(int i = 0; i < row1; i++){
-         for(int j = 0; j < col2; j++){
-             for(int k = 0; k < col1; ++k){
-                mult[i][j] += mat1[i][k] * mat2[k][j];
+    for(int i = 0; i < row1; i++){
+        for(int j = 0; j < col2; j++){
+            for(int k = 0; k < col1; k++){
+            mult[i][j] += mat1[i][k] * mat2[k][j];
             }
-         }     
-     }
+        }     
+    }
     // display
     cout << "\nMatrix A:\n";
     for(int i = 0; i < row1; i++) {
@@ -242,7 +242,7 @@ void detMat(){
     int size;
     double mat[10][10];
     // set size matrix
-    cout << "Enter Size of Matrix: ";
+    cout << "Enter Size of Matrix (1-10): ";
     cin >> size;
     
     while(size > 10 || size < 1){
